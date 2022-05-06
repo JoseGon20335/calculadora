@@ -34,6 +34,7 @@ input{
     text-align: left;
     font-size: 90%;
     font-weight: 700;
+    color: white;
 }
 
 .teclado{
@@ -57,10 +58,11 @@ input{
     border-radius: 10px;
 }
 .especial2{
+    background-color: steelblue;
     margin: 5px;
     border: none;
-    grid-column:3/5;
-    grid-row: 5;
+    grid-row: 6;
+    grid-column: 1/5;
     border-radius: 10px;
 }
 

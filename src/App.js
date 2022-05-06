@@ -3,9 +3,13 @@ import './App.css';
 
 const App = () => {
 
+  const [nega, setNega] = useState("");
+
   const [resul, setResul] = useState("");
 
   const handleClick = (e) => {
+    console.log("***************************************************")
+    console.log(e)
     setResul(resul.concat(e.target.name));
   }
 
@@ -23,9 +27,7 @@ const App = () => {
 
     let size = valor.toString().length
 
-    console.log(size)
-
-    if(valor < 0){
+    if(valor < 0 && nega == false){
       valor = 'ERROR**'
     } else if(valor > 999999999){
       valor = 'ERROR'
@@ -36,53 +38,36 @@ const App = () => {
           if(size == 9){
             varW = false
           }else{
-
-            console.log("quitar num1",valor)
-  
             valor = valor.toString().slice(0,-1)
             size = size - 1;
-
-            console.log("quitar num2",valor)
-  
           }
         }
       } 
     }
+    setNega(false);
+    valor = valor + "";
     setResul(valor);
   }
 
   const negativador = () => {
 
-    let valor = eval(resul)
+    setNega(true);
 
-    let size = valor.toString().length
+    let valor = resul
 
-    console.log(size)
+    console.log("entro")
 
-    if(valor < 0){
-      valor = 'ERROR**'
-    } else if(valor > 999999999){
-      valor = 'ERROR'
+    if(resul > 0){
+      console.log("entro if")
+      valor = "-" + resul
     } else{
-      if(size >= 10){
-        let varW = true
-        while(varW == true){
-          if(size == 9){
-            varW = false
-          }else{
-
-            console.log("quitar num1",valor)
-  
-            valor = valor.toString().slice(0,-1)
-            size = size - 1;
-
-            console.log("quitar num2",valor)
-  
-          }
-        }
-      } 
+      console.log("entro else")
+      valor.substring(1);
     }
-    setResul(valor);
+
+    console.log(valor);
+    setResul(valor)
+
   }
 
   return (
@@ -108,8 +93,9 @@ const App = () => {
         <button className='botonColorido' name='+' onClick={handleClick}>+</button>
         <button className='boton' name='0' onClick={handleClick}>0</button>
         <button className='boton' name='.' onClick={handleClick}>.</button>
-        <button className='botonColorido' onClick={negativador}>+/-</button>
-        <button className='botonColorido' onClick={calcularClick}>=</button>
+        <button className='botonColorido' name='+/-' onClick={negativador}>+/-</button>
+        <button className='botonColorido' name='%' onClick={handleClick}>%</button>
+        <button className='especial2' onClick={calcularClick}>=</button>
       </div>
     </div>
   );
