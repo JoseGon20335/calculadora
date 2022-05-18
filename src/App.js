@@ -1,14 +1,14 @@
 import React, {useState } from 'react';
+import operacion from './operaciones';
 import './App.css';
 
 const App = () => {
 
-  const [nega, setNega] = useState("");
+  const [nega, setNega] = useState(false);
 
   const [resul, setResul] = useState("");
 
   const handleClick = (e) => {
-    console.log("***************************************************")
     console.log(e)
     setResul(resul.concat(e.target.name));
   }
@@ -23,29 +23,14 @@ const App = () => {
 
   const calcularClick = () => {
 
-    let valor = eval(resul)
+    let numero1 = resul;
+    let verdaderofalso = nega;
 
-    let size = valor.toString().length
+    console.log("-*********-*********-******-entro",numero1,verdaderofalso)
 
-    if(valor < 0 && nega == false){
-      valor = 'ERROR**'
-    } else if(valor > 999999999){
-      valor = 'ERROR'
-    } else{
-      if(size >= 10){
-        let varW = true
-        while(varW == true){
-          if(size == 9){
-            varW = false
-          }else{
-            valor = valor.toString().slice(0,-1)
-            size = size - 1;
-          }
-        }
-      } 
-    }
+    let valor = operacion(numero1,verdaderofalso);
+
     setNega(false);
-    valor = valor + "";
     setResul(valor);
   }
 
